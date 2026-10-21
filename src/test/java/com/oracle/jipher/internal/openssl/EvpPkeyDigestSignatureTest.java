@@ -100,6 +100,8 @@ public class EvpPkeyDigestSignatureTest extends EvpTest {
         Set<String> paramKeys = stringStream.collect(Collectors.toSet());
         if (fipsProviderVersion.compareTo(Version.of("3.5.9")) >= 0) {
             assertTrue(paramKeys.contains("fips-indicator"));
+        } else if (fipsProviderVersion.compareTo(Version.of("3.0.0")) >= 0) {
+            assertEquals(EMPTY_SET, paramKeys);
         }
     }
 
